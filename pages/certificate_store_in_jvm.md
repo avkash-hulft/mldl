@@ -138,3 +138,26 @@ $ sudo keytool -importcert
    -file ec2_ADDRESS_URL.cer
    
 ```
+
+## List all certificates in a keystore
+```
+$ keytool -list -v -keystore /Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/security/cacerts
+
+### Search by ec2 
+$ keytool -list -v -keystore /Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/security/cacerts | grep ec2 
+
+```
+
+## Delete a specific certificate from the keystore
+```
+### first find the alias
+$ keytool -list -v -keystore /Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/security/cacerts | grep localhost
+
+### Now delete the certificate 
+$ sudo keytool -delete -alias localhost  -v -keystore /Library/Java/JavaVirtualMachines/jdk1.8.0_251.jdk/Contents/Home/jre/lib/security/cacerts
+
+Note: If you havent change the password the default password is changeit
+
+### Verify if the certificate deleted sucessfully.
+```
+
